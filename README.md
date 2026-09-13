@@ -6,7 +6,7 @@ The focus is on **simplicity and usability**, aiming for **minimal authoring eff
 
 
 
-## 🪢 Rope
+## Rope
 **Using Rigidbodies and ConfigurableJoints**
 
 The rope system is split into a generator and a runtime component.  
@@ -14,11 +14,11 @@ The generator instantiates a chain of prefab `Rigidbody` points and connects the
 
 The runtime `Rope` component handles visualization by collecting the generated segment transforms and updating a `LineRenderer` each frame so the rope follows the simulated rigidbody positions.
 
-▶ **Demo:** https://www.youtube.com/shorts/QTXzCxIQ-xY
+**Demo:** https://www.youtube.com/shorts/QTXzCxIQ-xY
 
 
 
-## 🧵 Cloth
+## Cloth
 **Using Rigidbodies and ConfigurableJoints**
 
 The cloth system also consists of a generator and a runtime component.  
@@ -27,36 +27,13 @@ The generator creates a 2D grid of prefab `Rigidbody` points and connects neighb
 The `Cloth` component is responsible for visualization and optional collision behavior.  
 It can render the cloth as a wireframe using line renderers or as a dynamically generated mesh whose vertices are updated each frame from the simulated point positions. Optional mesh collider updates prevent rigidbodies from passing through the cloth, provided the cloth points are not spaced too far apart.
 
-▶ **Demo:** https://www.youtube.com/shorts/QTXzCxIQ-xY
+**Demo:** https://www.youtube.com/shorts/QTXzCxIQ-xY
 
 ![Cloth Image](Images/Cloth.png)
 
 
 
-## 🧽 SoftMeshLight
-**Lightweight, impulse-based static mesh deformation**
-
-SoftMeshLight is a standalone runtime component and does not use a generator.  
-It clones the assigned mesh at runtime and listens for collision events. On impact, nearby vertices are displaced along the collision normal using a smooth falloff within a configurable radius.
-
-The deformation is computed asynchronously to avoid blocking the main thread.  
-The mesh collider can optionally be updated so that visual deformation and collision geometry remain consistent.
-
-▶ **Demo:** https://www.youtube.com/shorts/hCs_VBjFWeg
-
-![SoftMeshLight Image](Images/SoftMeshLight.png)
-
-
-
-## 🧽➕ SoftMesh (Coming Soon)
-**Elastic and dynamic soft-body deformation**
-
-SoftMesh is an improved version of SoftMeshLight and aims to support non-static, elastic deformations.  
-Unlike SoftMeshLight, which applies permanent dents, SoftMesh is intended to allow meshes to recover over time and respond dynamically, enabling jelly-like behavior.
-
-
-
-## 🧠 SoftBody
+## SoftBody
 **Joint-based volumetric soft body using mesh topology**
 
 SoftBody is an soft-body implementation that derives its simulation structure directly from a mesh.  
@@ -71,7 +48,7 @@ An optional mesh collider can be generated and updated dynamically, and collisio
 
 
 
-## 🎈 ClothBalloon
+## ClothBalloon
 **SoftBody variant with internal pressure forces**
 
 ClothBalloon works like SoftBody, deriving its simulation structure from a mesh by creating `rigidbodies` per unique vertex and connecting them using `ConfigurableJoint`s.
@@ -84,7 +61,7 @@ Mesh deformation, optional collider updates, and collision impulse handling work
 
 
 
-## 🔗 EmbeddedSoftBody  
+## EmbeddedSoftBody
 **Surface-sampled joint soft body with mesh skinning**
 
 EmbeddedSoftBody distributes prefab `rigidbodie` points across a mesh surface using Poisson disk sampling.  
@@ -97,3 +74,10 @@ An optional mesh collider can be generated and updated dynamically.
 Collision impulses can be relayed to nearby rigidbodies.
 
 ![EmbeddedSoftBody Image](Images/EmbeddedSoftBody.gif)
+
+
+
+## Moved: SoftMesh & SoftMeshLight
+
+SoftMeshLight and SoftMesh used to be part of this project and have been removed from it.  
+Both components, including their demo scenes and assets, now live in their own repository: **[Unity Soft Mesh](https://github.com/JohannHotzel/soft-mesh)**.
